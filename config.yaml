@@ -1,0 +1,49 @@
+# Settings of the thesis CBRL runs (ViT-L/16, 1,024 images per step). Change only on purpose:
+# every value below was used for the reported results.
+data_root: data          # prepared datasets (python prepare_data.py <dataset>)
+output_dir: outputs      # checkpoints, logs and results.json under outputs/<dataset>/<run>/
+
+pretrain:
+  architecture: vit_l_16
+  image_size: 224
+  gradient_checkpointing: true    # saves memory, does not change the result
+  # loss = bootstrap_loss_weight * BYOL + contrastive_loss_weight * NT-Xent
+  bootstrap_loss_weight: 1.0
+  contrastive_loss_weight: 1.0
+  temperature: 0.5
+  projection_dim: 256
+  projection_hidden_dim: 4096
+  prediction_hidden_dim: 4096
+  ema_base_momentum: 0.996        # target network, cosine schedule to 1.0
+  # augmentation (asymmetric BYOL views, Albumentations)
+  min_crop_scale: 0.08
+  vertical_flip_prob: 0.1
+  noise_prob: 0.03
+  # length: steps = round(train images * reference_steps / reference_dataset_size)
+  # (10,000 steps on PlantVillage's 38,012 training images; DeepWeeds -> 3,224, LUCAS -> 35,948)
+  reference_dataset_size: 38012
+  reference_steps: 10000
+  batch_size: 1024
+  gradient_accumulation: 1
+  lr: 5.0e-4                      # AdamW, 5% linear warm-up then cosine to 0
+  weight_decay: 0.05
+  warmup_fraction: 0.05
+  amp: true
+  num_workers: 8
+  checkpoint_every_steps: 50      # also when the "best" (lowest-loss) checkpoint is considered
+
+finetune:
+  architecture: vit_l_16
+  image_size: 224
+  label_fraction: 0.1             # stratified 10% of the training labels
+  epochs: 50
+  batch_size: 64
+  eval_batch_size: 128
+  gradient_accumulation: 1
+  encoder_lr: 1.0e-5
+  head_lr: 1.0e-4
+  weight_decay: 0.05
+  warmup_epochs: 5
+  dropout: 0.0
+  amp: true
+  num_workers: 8
