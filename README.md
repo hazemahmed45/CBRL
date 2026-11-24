@@ -11,6 +11,7 @@ ICACIn'26 · Springer
 [![arXiv](https://img.shields.io/badge/arXiv-2611.15610-b31b1b.svg)](https://arxiv.org/abs/2611.15610)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-3776AB.svg?logo=python&logoColor=white)](requirements.txt)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.13-EE4C2C.svg?logo=pytorch&logoColor=white)](requirements.txt)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![timm](https://img.shields.io/badge/timm-ViT--L%2F16-ffcc4d.svg)](https://github.com/huggingface/pytorch-image-models)
 
 <img src="assets/architecture.png" width="95%" alt="CBRL architecture">
@@ -165,6 +166,11 @@ If you find this work useful, please cite:
   note      = {Also available as arXiv preprint arXiv:2611.15610}
 }
 ```
+
+## License
+
+The code is released under the [MIT License](LICENSE). The datasets keep their own licences;
+see each dataset's source before redistributing it.
 
 ## Acknowledgements
 
