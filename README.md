@@ -1,5 +1,9 @@
 # CBRL: Contrastive Bootstrap Representation Learning
 
+Code for the paper **Contrastive Bootstrap Representation Learning for Label-Efficient Agricultural
+Image Classification** (Hazem Ahmed, Ali Hamdi, Ammar Mohammed), ICACIn'26, Springer.
+Preprint: [arXiv:2611.15610](https://arxiv.org/abs/2611.15610).
+
 Self-supervised pre-training of a ViT-L/16 for agricultural images, followed by fine-tuning on
 10% of the labels. CBRL trains a BYOL network (online encoder, projector and predictor with an
 EMA target) and adds an NT-Xent (InfoNCE) loss between the online projections of the two views:
@@ -82,3 +86,19 @@ against that code on CPU with the pinned packages:
 The pre-training augmentations draw their randomness from Albumentations, which seeds itself from
 the operating system, as the thesis code did. Two runs with the same seed therefore differ by
 ordinary run-to-run noise; the thesis reports three seeds per setting for this reason.
+
+## Citation
+
+If you use this code, please cite:
+
+```bibtex
+@inproceedings{ahmed2026cbrl,
+  title     = {Contrastive Bootstrap Representation Learning for Label-Efficient Agricultural Image Classification},
+  author    = {Ahmed, Hazem and Hamdi, Ali and Mohammed, Ammar},
+  booktitle = {Proceedings of the 5th International Conference on Advanced Computing and Informatics (ICACIn'26)},
+  address   = {Birmingham, UK},
+  publisher = {Springer},
+  year      = {2026},
+  note      = {Also available as arXiv preprint arXiv:2611.15610}
+}
+```
